@@ -5,38 +5,36 @@ const TitleContainer = ({ titleText, id }) => {
     console.log(titleText, 'was pressed');
   };
   return (
-    <View style={styles.titleItem}>
+    <View style={styles.titleContainer}>
       <Pressable
         onPress={onPressTitle}
         style={({ pressed }) => {
-        console.log(pressed);
-          return pressed && styles.onPressStyle;
-      }}
+          return [
+            { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
+            styles.button,
+          ];
+        }}
       >
-        <View style={styles.titleItem}>
-          <Text style={styles.title}>{titleText}</Text>
-        </View>
+        <Text style={styles.titleText}>{titleText}</Text>
       </Pressable>
     </View>
   );
 };
 const styles = StyleSheet.create({
   titleContainer: {
-    width: '100%',
+    alignItems: 'centrer',
+    justifyContent: 'center',
+    width: '80%',
   },
-  titleItem: {
+  button: {
     borderRadius: 10,
-    backgroundColor: 'rgb(170, 209, 232)',
     margin: 10,
     alignItems: 'center',
     width: '100%',
     padding: 16,
   },
   titleText: {
-    color: 'rgb(77, 77, 94)',
-  },
-  onPressStyle: {
-    backgroundColor: 'black',
+    color: '#E5EAF5',
   },
 });
 

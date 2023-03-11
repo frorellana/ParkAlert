@@ -1,0 +1,112 @@
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  Pressable,
+} from 'react-native';
+import Title from '../components/TitleContainer';
+import TitleContainer from '../components/TitleContainer';
+
+export default function Home({ navigation }) {
+  const DATA = [
+    { text: 'Add Parking Spot', navigation: 'AddSpot' },
+    { text: 'Find Car', navigation: 'FindCar' },
+    { text: 'Clear Parking Location', navigation: 'Clear' },
+  ];
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <StatusBar style="auto" />
+        <Text style={styles.mainTitle}>ParkAlert!!</Text>
+        <Image
+          style={styles.carImage}
+          source={require('../assets/vintage-car-png.webp')}
+        />
+      </View>
+      <View style={styles.body}>
+        {DATA.map((item, index) => (
+          <Pressable
+            key={`${item.text}${index}`}
+            onPress={() => navigation.navigate(item.navigation)}
+            style={({ pressed }) => {
+              return [
+                { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
+                styles.button,
+              ];
+            }}
+          >
+            <Text style={styles.titleText}>{item.text}</Text>
+          </Pressable>
+        ))}
+        {/* <FlatList
+          style={styles.list}
+          data={DATA}
+          renderItem={({ item }) => (
+            <Pressable
+              onPress={() => navigation.navigate(item.navigation)}
+              style={({ pressed }) => {
+                return [
+                  { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
+                  styles.button,
+                ];
+              }}
+            >
+              <Text style={styles.titleText}>{item.text}</Text>
+            </Pressable>
+          )}
+          keyExtractor={(item, index) => `${item.text}${index}`}
+        /> */}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  mainTitle: {
+    fontSize: 50,
+    color: 'rgb(126, 90, 200)',
+    fontWeight: '700',
+    margin: 30,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'rgb(26, 42, 78)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 40,
+  },
+  header: {
+    flex: 2.5,
+    justifyContent: 'center',
+  },
+  body: {
+    flex: 3,
+    justifyContent: 'center',
+    width: '100%',
+  },
+  carImage: {
+    height: 100,
+    width: 210,
+    margin: 50,
+  },
+  titleStyle: {
+    width: '100%',
+  },
+  button: {
+    alignItems: 'center',
+    marginBottom: 30,
+    borderRadius: 10,
+    padding: 20,
+  },
+  list: {
+    width: '80%',
+    margin: 20,
+  },
+  titleText: {
+    color: '#E5EAF5',
+  },
+});

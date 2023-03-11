@@ -1,23 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-const TitleContainer = ({ titleText, id }) => {
-  const onPressTitle = () => {
-    console.log(titleText, 'was pressed');
-  };
+import { useNavigation } from '@react-navigation/native';
+
+const TitleContainer = ({ titleText, naviName }) => {
   return (
-    <View style={styles.titleContainer}>
-      <Pressable
-        onPress={onPressTitle}
-        style={({ pressed }) => {
-          return [
-            { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
-            styles.button,
-          ];
-        }}
-      >
-        <Text style={styles.titleText}>{titleText}</Text>
-      </Pressable>
-    </View>
+    <Pressable
+      style={({ pressed }) => {
+        return [
+          { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
+          styles.button,
+        ];
+      }}
+    >
+      <Text style={styles.titleText}>{titleText}</Text>
+    </Pressable>
   );
 };
 const styles = StyleSheet.create({

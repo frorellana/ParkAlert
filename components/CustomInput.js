@@ -12,7 +12,7 @@ export default function CustomInput({
       <TextInput
         placeholder={placeholder}
         value={value}
-        onChange={setValue}
+        onChangeText={setValue}
         style={styles.input}
         secureTextEntry={secureTextEntry}
       />

@@ -27,7 +27,7 @@ export default function Login({ navigation }) {
         placeholder="password"
         value={password}
         setValue={setPassword}
-        secureTextEntry="true"
+        secureTextEntry={true}
       />
       <CustomButton onPress={handleOnPress} />
       <Pressable onPress={() => navigation.navigate('Register')}>

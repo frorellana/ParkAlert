@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 
-export default function CustomButton() {
+export default function CustomButton({ onPress }) {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <Text>Submit</Text>
     </Pressable>
   );

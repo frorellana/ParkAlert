@@ -6,7 +6,7 @@ import CustomInput from '../components/CustomInput';
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleOnPress = () => {
+  const onPress = () => {
     console.log('i am signed up with', email, password);
   };
   return (
@@ -17,9 +17,9 @@ export default function Register() {
         placeholder="password"
         value={password}
         setValue={setPassword}
-        secureTextEntry="true"
+        secureTextEntry={true}
       />
-      <CustomButton onPress={handleOnPress} />
+      <CustomButton onPress={onPress} />
     </SafeAreaView>
   );
 }

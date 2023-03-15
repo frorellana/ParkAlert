@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Text, StyleSheet, Pressable } from 'react-native';
 
 const TitleContainer = ({ titleText, naviName }) => {
   return (

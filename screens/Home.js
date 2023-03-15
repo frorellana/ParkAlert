@@ -7,9 +7,10 @@ import {
   Image,
   FlatList,
   Pressable,
+  ScrollView,
 } from 'react-native';
-import Title from '../components/TitleContainer';
-import TitleContainer from '../components/TitleContainer';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Home({ navigation }) {
   const DATA = [
@@ -18,35 +19,24 @@ export default function Home({ navigation }) {
     { text: 'Clear Parking Location', navigation: 'Clear' },
   ];
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <StatusBar style="auto" />
-        <Text style={styles.mainTitle}>ParkAlert!!</Text>
-        <Image
-          style={styles.carImage}
-          source={require('../assets/vintage-car-png.webp')}
-        />
-      </View>
-      <View style={styles.body}>
-        {DATA.map((item, index) => (
-          <Pressable
-            key={`${item.text}${index}`}
-            onPress={() => navigation.navigate(item.navigation)}
-            style={({ pressed }) => {
-              return [
-                { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
-                styles.button,
-              ];
-            }}
-          >
-            <Text style={styles.titleText}>{item.text}</Text>
-          </Pressable>
-        ))}
-        {/* <FlatList
-          style={styles.list}
-          data={DATA}
-          renderItem={({ item }) => (
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        style={styles.scroll}
+      >
+        <View style={styles.header}>
+          <StatusBar style="light" />
+          <Text style={styles.mainTitle}>ParkAlert!!</Text>
+          <Image
+            style={styles.carImage}
+            source={require('../assets/vintage-car-png.webp')}
+          />
+        </View>
+        <View style={styles.body}>
+          {DATA.map((item, index) => (
             <Pressable
+              key={`${item.text}${index}`}
               onPress={() => navigation.navigate(item.navigation)}
               style={({ pressed }) => {
                 return [
@@ -57,11 +47,28 @@ export default function Home({ navigation }) {
             >
               <Text style={styles.titleText}>{item.text}</Text>
             </Pressable>
-          )}
-          keyExtractor={(item, index) => `${item.text}${index}`}
-        /> */}
-      </View>
-    </View>
+          ))}
+          {/* <FlatList
+            style={styles.list}
+            data={DATA}
+            renderItem={({ item }) => (
+              <Pressable
+                onPress={() => navigation.navigate(item.navigation)}
+                style={({ pressed }) => {
+                  return [
+                    { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
+                    styles.button,
+                  ];
+                }}
+              >
+                <Text style={styles.titleText}>{item.text}</Text>
+              </Pressable>
+            )}
+            keyExtractor={(item, index) => `${item.text}${index}`}
+          /> */}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -77,16 +84,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(26, 42, 78)',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 40,
+    paddingTop: 50,
   },
+
   header: {
-    flex: 2.5,
+    flex: 4,
     justifyContent: 'center',
+    paddingVeritcal: 30,
   },
   body: {
     flex: 3,
     justifyContent: 'center',
-    width: '100%',
   },
   carImage: {
     height: 100,

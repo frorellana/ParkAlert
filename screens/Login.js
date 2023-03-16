@@ -1,15 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/auth';
 import { StatusBar } from 'expo-status-bar';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  Pressable,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
@@ -32,7 +24,7 @@ export default function Login({ navigation }) {
         setValue={setPassword}
         secureTextEntry={true}
       />
-      <CustomButton onPress={onPress} />
+      <CustomButton text={'Submit'} bgColor={'#457B9D'} onPress={onPress} />
       {/* <Pressable
         onPress={() => navigation.navigate('Register')}
         style={styles.submitButton}

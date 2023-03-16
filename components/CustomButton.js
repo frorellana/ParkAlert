@@ -1,34 +1,44 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 
-export default function CustomButton({ onPress }) {
+export default function CustomButton({ onPress, text, bgColor }) {
   return (
     <Pressable
       style={({ pressed }) => {
         return [
-          { backgroundColor: pressed ? '#D0BDF4' : '#8458B3' },
+          {
+            opacity: pressed ? 0.5 : 1,
+            backgroundColor: `${bgColor}`,
+          },
           styles.container,
+          styles.shadowProp,
         ];
       }}
       onPress={onPress}
     >
-      <Text style={styles.input}>Submit</Text>
+      <Text style={styles.input}>{text}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    borderColor: 'e8e8e8',
-    borderRadius: 5,
-    borderWidth: 1,
-    padding: 16,
-    marginVertical: 5,
+    width: '85%',
+    borderRadius: '20%',
+    padding: 18,
+    marginVertical: 10,
     alignItems: 'center',
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
 
   input: {
     color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });

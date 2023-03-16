@@ -19,7 +19,7 @@ export default function Register() {
         setValue={setPassword}
         secureTextEntry={true}
       />
-      <CustomButton onPress={onPress} />
+      <CustomButton text={'Submit'} bgColor={'#E63946'} onPress={onPress} />
     </SafeAreaView>
   );
 }

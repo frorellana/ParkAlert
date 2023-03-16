@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../contexts/auth';
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
@@ -16,9 +17,11 @@ import CustomButton from '../components/CustomButton';
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const context = useContext(AuthContext);
 
-  const handleOnPress = () => {
+  const onPress = () => {
     console.log('i am logged in with', email, password);
+    context.loginRequest();
   };
   return (
     <SafeAreaView>
@@ -29,10 +32,25 @@ export default function Login({ navigation }) {
         setValue={setPassword}
         secureTextEntry={true}
       />
-      <CustomButton onPress={handleOnPress} />
-      <Pressable onPress={() => navigation.navigate('Register')}>
-        <Text>Don't have an account? Register here</Text>
-      </Pressable>
+      <CustomButton onPress={onPress} />
+      {/* <Pressable
+        onPress={() => navigation.navigate('Register')}
+        style={styles.submitButton}
+      > */}
+      <Text
+        onPress={() => navigation.navigate('Register')}
+        style={styles.registerLink}
+      >
+        Don't have an account? Register here
+      </Text>
+      {/* </Pressable> */}
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  registerLink: {
+    alignSelf: 'center',
+    marginVertical: 10,
+  },
+});

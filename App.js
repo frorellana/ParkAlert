@@ -5,24 +5,28 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AddSpot from './screens/AddSpot';
 import FindCar from './screens/FindCar';
 import Clear from './screens/Clear';
-import AuthStack from './routes/AuthSatck';
+import Router from './routes/Router';
+import { AuthProvider } from './contexts/auth';
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      {/* <Stack.Navigator>
-        <Stack.Screen
-          name="Main Menu"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="AddSpot" component={AddSpot} />
-        <Stack.Screen name="FindCar" component={FindCar} />
-        <Stack.Screen name="Clear" component={Clear} />
-      </Stack.Navigator> */}
-      <AuthStack />
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   {/* <Stack.Navigator>
+    //     <Stack.Screen
+    //       name="Main Menu"
+    //       component={Home}
+    //       options={{ headerShown: false }}
+    //     />
+    //     <Stack.Screen name="AddSpot" component={AddSpot} />
+    //     <Stack.Screen name="FindCar" component={FindCar} />
+    //     <Stack.Screen name="Clear" component={Clear} />
+    //   </Stack.Navigator> */}
+    //   <AuthStack />
+    // </NavigationContainer>
+    <AuthProvider>
+      <Router />
+    </AuthProvider>
   );
 }
 

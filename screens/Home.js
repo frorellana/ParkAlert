@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
@@ -8,11 +8,13 @@ import {
   FlatList,
   Pressable,
   ScrollView,
+  Button,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import { ScrollView } from 'react-native-gesture-handler';
+import { AuthContext } from '../contexts/auth';
 
 export default function Home({ navigation }) {
+  const context = useContext(AuthContext);
   const DATA = [
     { text: 'Add Parking Spot', navigation: 'AddSpot' },
     { text: 'Find Car', navigation: 'FindCar' },
@@ -48,6 +50,7 @@ export default function Home({ navigation }) {
               <Text style={styles.titleText}>{item.text}</Text>
             </Pressable>
           ))}
+          <Button title="SignOut" onPress={context.logoutRequest} />
           {/* <FlatList
             style={styles.list}
             data={DATA}

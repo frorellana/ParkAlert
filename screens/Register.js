@@ -1,25 +1,76 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
-import CustomButton from '../components/CustomButton';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../contexts/Auth';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomInput from '../components/CustomInput';
+import CustomButton from '../components/CustomButton';
+import { MaterialIcons } from '@expo/vector-icons';
 
-export default function Register() {
+export default function Login({ navigation }) {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const context = useContext(AuthContext);
+
+  const iconPerson = <MaterialIcons name="person" size={20} color="grey" />;
+  const iconEmail = <MaterialIcons name="email" size={20} color="grey" />;
+  const iconPassword = <MaterialIcons name="lock" size={20} color="grey" />;
+
   const onPress = () => {
-    console.log('i am signed up with', email, password);
+    console.log('i am logged in with', name, email, password);
+    setName('');
+    setEmail('');
+    setPassword('');
   };
   return (
-    <SafeAreaView>
-      <Text>Create Account</Text>
-      <CustomInput placeholder="email" value={email} setValue={setEmail} />
+    <SafeAreaView style={styles.container}>
+      <Image
+        style={styles.img}
+        source={require('../assets/vertical-logo.png')}
+      />
       <CustomInput
-        placeholder="password"
+        icon={iconPerson}
+        placeholder="Name"
+        value={name}
+        setValue={setName}
+      />
+      <CustomInput
+        icon={iconEmail}
+        placeholder="Email"
+        value={email}
+        setValue={setEmail}
+      />
+      <CustomInput
+        icon={iconPassword}
+        placeholder="Password"
         value={password}
         setValue={setPassword}
+        secureTextEntry={true}
+      />
+      <CustomInput
+        icon={iconPassword}
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        setValue={setConfirmPassword}
         secureTextEntry={true}
       />
       <CustomButton text={'Submit'} bgColor={'#E63946'} onPress={onPress} />
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    backgroundColor: '#1D3557',
+    flex: 1,
+  },
+  img: {
+    width: 350,
+    height: 200,
+    resizeMode: 'contain',
+  },
+});

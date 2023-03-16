@@ -12,10 +12,17 @@ export default function AuthStack() {
       <Stack.Screen
         name="Welcome"
         component={Welcome}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, title: '' }}
       />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="Login" component={Login} options={header} />
+      <Stack.Screen name="Register" component={Register} options={header} />
     </Stack.Navigator>
   );
 }
+
+const header = {
+  headerStyle: {
+    backgroundColor: '#1D3557',
+  },
+  headerTintColor: '#fff',
+};

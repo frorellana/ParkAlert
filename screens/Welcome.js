@@ -1,17 +1,13 @@
-import React, { useContext, useState } from 'react';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import CustomButton from '../components/CustomButton';
-import MainLogo from '../components/MainLogo';
 
 export default function Welcome({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        resizeMode="contain"
-        style={styles.img}
-        source={require('../assets/main-logo.png')}
-      />
+      <Image style={styles.img} source={require('../assets/main-logo.png')} />
       <View style={styles.buttons}>
         <CustomButton
           text={'Login'}

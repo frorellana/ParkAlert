@@ -11,7 +11,7 @@ import {
   Button,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AuthContext } from '../contexts/auth';
+import { AuthContext } from '../contexts/Auth';
 
 export default function Home({ navigation }) {
   const context = useContext(AuthContext);

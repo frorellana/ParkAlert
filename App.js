@@ -6,7 +6,7 @@ import AddSpot from './screens/AddSpot';
 import FindCar from './screens/FindCar';
 import Clear from './screens/Clear';
 import Router from './routes/Router';
-import { AuthProvider } from './contexts/auth';
+import { AuthProvider } from './contexts/Auth';
 const Stack = createStackNavigator();
 
 export default function App() {

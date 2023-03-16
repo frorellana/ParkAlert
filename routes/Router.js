@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
-import { AuthContext } from '../contexts/auth';
+import { AuthContext } from '../contexts/Auth';
 import Loading from '../components/Loading';
 
 export default function Router() {
@@ -20,3 +20,5 @@ export default function Router() {
     </NavigationContainer>
   );
 }
+
+

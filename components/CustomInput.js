@@ -2,13 +2,15 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
 export default function CustomInput({
+  icon,
   placeholder,
   value,
   setValue,
   secureTextEntry = false,
 }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styles.shadowProp]}>
+      {icon}
       <TextInput
         placeholder={placeholder}
         value={value}
@@ -23,13 +25,21 @@ export default function CustomInput({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    width: '100%',
-    borderColor: 'e8e8e8',
-    borderRadius: 5,
-    borderWidth: 1,
-    marginVertical: 5,
-    padding: 5,
+    width: '90%',
+    borderRadius: '20%',
+    marginVertical: 6,
+    padding: 12,
+    flexDirection: 'row',
   },
 
-  input: {},
+  input: {
+    flex: 1,
+    paddingLeft: 5,
+  },
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
 });

@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import { MaterialIcons } from '@expo/vector-icons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function Login({ navigation }) {
   const [name, setName] = useState('');
@@ -26,53 +27,59 @@ export default function Login({ navigation }) {
     setPassword('');
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.img}
-        source={require('../assets/vertical-logo.png')}
-      />
+    <KeyboardAwareScrollView style={styles.scroll}>
+      <SafeAreaView style={styles.container}>
+        <Image
+          style={styles.img}
+          source={require('../assets/vertical-logo.png')}
+        />
 
-      <CustomInput
-        icon={iconPerson}
-        placeholder="Name"
-        value={name}
-        setValue={setName}
-        style={styles.inputs}
-      />
-      <CustomInput
-        icon={iconEmail}
-        placeholder="Email"
-        value={email}
-        setValue={setEmail}
-        style={styles.inputs}
-      />
-      <CustomInput
-        icon={iconPassword}
-        placeholder="Password"
-        value={password}
-        setValue={setPassword}
-        secureTextEntry={true}
-        style={styles.inputs}
-      />
-      <CustomInput
-        icon={iconPassword}
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        setValue={setConfirmPassword}
-        secureTextEntry={true}
-        style={styles.inputs}
-      />
-      <CustomButton
-        text={'Submit'}
-        bgColor={'#E63946'}
-        onPress={onPress}
-        style={styles.button}
-      />
-    </SafeAreaView>
+        <CustomInput
+          icon={iconPerson}
+          placeholder="Name"
+          value={name}
+          setValue={setName}
+          style={styles.inputs}
+        />
+        <CustomInput
+          icon={iconEmail}
+          placeholder="Email"
+          value={email}
+          setValue={setEmail}
+          style={styles.inputs}
+        />
+        <CustomInput
+          icon={iconPassword}
+          placeholder="Password"
+          value={password}
+          setValue={setPassword}
+          secureTextEntry={true}
+          style={styles.inputs}
+        />
+        <CustomInput
+          icon={iconPassword}
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          setValue={setConfirmPassword}
+          secureTextEntry={true}
+          style={styles.inputs}
+        />
+        <CustomButton
+          text={'Submit'}
+          bgColor={'#E63946'}
+          onPress={onPress}
+          style={styles.button}
+        />
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+    backgroundColor: '#1D3557',
+  },
   container: {
     alignItems: 'center',
     backgroundColor: '#1D3557',

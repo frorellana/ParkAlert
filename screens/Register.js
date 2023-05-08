@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/Auth';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Text, Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
@@ -31,17 +31,20 @@ export default function Login({ navigation }) {
         style={styles.img}
         source={require('../assets/vertical-logo.png')}
       />
+
       <CustomInput
         icon={iconPerson}
         placeholder="Name"
         value={name}
         setValue={setName}
+        style={styles.inputs}
       />
       <CustomInput
         icon={iconEmail}
         placeholder="Email"
         value={email}
         setValue={setEmail}
+        style={styles.inputs}
       />
       <CustomInput
         icon={iconPassword}
@@ -49,6 +52,7 @@ export default function Login({ navigation }) {
         value={password}
         setValue={setPassword}
         secureTextEntry={true}
+        style={styles.inputs}
       />
       <CustomInput
         icon={iconPassword}
@@ -56,8 +60,14 @@ export default function Login({ navigation }) {
         value={confirmPassword}
         setValue={setConfirmPassword}
         secureTextEntry={true}
+        style={styles.inputs}
       />
-      <CustomButton text={'Submit'} bgColor={'#E63946'} onPress={onPress} />
+      <CustomButton
+        text={'Submit'}
+        bgColor={'#E63946'}
+        onPress={onPress}
+        style={styles.button}
+      />
     </SafeAreaView>
   );
 }
@@ -67,6 +77,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#1D3557',
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   },
   img: {
     width: 350,

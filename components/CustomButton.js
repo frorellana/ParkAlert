@@ -24,7 +24,7 @@ export default function CustomButton({ onPress, text, bgColor }) {
 const styles = StyleSheet.create({
   container: {
     width: '85%',
-    borderRadius: '20%',
+    borderRadius: 15,
     padding: 18,
     marginTop: 16,
     alignItems: 'center',

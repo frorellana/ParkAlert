@@ -26,10 +26,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     width: '90%',
-    borderRadius: '20%',
     marginVertical: 6,
     padding: 12,
     flexDirection: 'row',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   input: {

@@ -7,6 +7,8 @@ import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import { MaterialIcons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import auth from '../firebase';
 
 export default function Login({ navigation }) {
   const [name, setName] = useState('');
@@ -22,6 +24,19 @@ export default function Login({ navigation }) {
 
   const onPress = () => {
     console.log('i am logged in with', name, email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user.email);
+        navigation.navigate('Main Menu');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+      });
+
     setName('');
     setEmail('');
     setPassword('');

@@ -1,6 +1,10 @@
 import React, { useContext, useState, createContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '../firebase';
+import { signOut } from 'firebase/auth';
+
 const AuthContext = createContext({});
+
 
 const AuthProvider = ({ children }) => {
   const [authData, setAuthData] = useState({});
@@ -34,6 +38,9 @@ const AuthProvider = ({ children }) => {
 
   const logoutRequest = async () => {
     setAuthData(undefined);
+    signOut(auth).then(() => {
+      console.log('Signed Out');
+    });
     await AsyncStorage.removeItem('@AuthData');
   };
 

@@ -16,7 +16,7 @@ To work on ParkAlert, you'll need to have the following software installed on yo
 ## Installing
 To install ParkAlert, you can clone the project repository from GitHub:
 ```
-git clone https://github.com/your-username/parkalert.git
+git clone https://github.com/frorellana/parkalert.git
 ```
 ## Next, you'll need to install the dependencies by running:
 ```

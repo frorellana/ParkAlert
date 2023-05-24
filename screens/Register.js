@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/Auth';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';

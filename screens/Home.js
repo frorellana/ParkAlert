@@ -5,7 +5,6 @@ import {
   Text,
   View,
   Image,
-  FlatList,
   Pressable,
   ScrollView,
   Button,

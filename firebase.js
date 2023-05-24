@@ -40,6 +40,7 @@ const createFirebaseApp = (config = {}) => {
 const firebaseApp = createFirebaseApp(firebaseConfig);
 const auth = getAuth();
 
+
 // const analytics = getAnalytics(app);
 
 export default auth;

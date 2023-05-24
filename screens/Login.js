@@ -16,8 +16,8 @@ export default function Login({ navigation }) {
   const iconPassword = <MaterialIcons name="lock" size={20} color="grey" />;
 
   const onPress = () => {
-    console.log('i am logged in with', email, password);
-    context.loginRequest();
+    // console.log('i am logged in with', email, password);
+    context.loginRequest(email, password);
   };
   return (
     <SafeAreaView style={styles.container}>

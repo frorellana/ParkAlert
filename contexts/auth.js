@@ -1,53 +1,66 @@
-import React, { useContext, useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '../firebase';
-import { signOut } from 'firebase/auth';
+import {
+  signOut,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  getAuth,
+} from 'firebase/auth';
 
 const AuthContext = createContext({});
 
-
 const AuthProvider = ({ children }) => {
-  const [authData, setAuthData] = useState({});
-  const [load, setLoad] = useState(true);
+  const [authData, setAuthData] = useState(null);
+  const [loading, setloading] = useState(true);
   useEffect(() => {
-    dataFromStorage();
-  }, []);
-  const dataFromStorage = async () => {
-    const response = await AsyncStorage.getItem('@AuthData');
-    const data = await JSON.parse(response);
-    console.log('this is data from storage', data);
-    setAuthData(data);
-    setLoad(false);
-  };
-  console.log('authProvider', authData);
-  const loginRequest = async () => {
-    const mockFetch = () => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            email: 'abc@gmail.com',
-            name: 'Lucas Garcez',
-          });
-        }, 1000);
-      });
-    };
-    const res = await mockFetch();
-    setAuthData(res);
-    AsyncStorage.setItem('@AuthData', JSON.stringify(res));
-  };
-
-  const logoutRequest = async () => {
-    setAuthData(undefined);
-    signOut(auth).then(() => {
-      console.log('Signed Out');
+    // need to retreive user if exists
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('auth changed');
+      if (user) {
+        // user signed in
+        setAuthData(user);
+      } else {
+        setAuthData(null);
+      }
+      setloading(false);
     });
-    await AsyncStorage.removeItem('@AuthData');
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
+  }, []);
+
+  const loginRequest = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        // setAuthData(userCredentials.user);
+        // above not need due to onAuthStateChanged
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+      });
   };
 
+  const logoutRequest = () => {
+    signOut(auth)
+      .then(() => {
+        // need to set AuthData to null to go back to login page
+        // above not need due to onAuthStateChanged
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+      });
+  };
   return (
-    // what do we want consumers to have access to?
+    // what do we want consumers to have access to
     <AuthContext.Provider
-      value={{ authData, loginRequest, logoutRequest, load }}
+      value={{ authData, loginRequest, logoutRequest, loading }}
     >
       {children}
     </AuthContext.Provider>

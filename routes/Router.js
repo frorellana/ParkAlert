@@ -9,16 +9,14 @@ import Loading from '../components/Loading';
 
 export default function Router() {
   const context = useContext(AuthContext);
-  if (context.load) {
+  if (context.loading) {
     return <Loading />;
   }
 
   return (
     <NavigationContainer>
-      {console.log('context.authData:', context.authData)}
+      {/* {console.log('context.authData:', context.authData)} */}
       {context.authData ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }
-
-

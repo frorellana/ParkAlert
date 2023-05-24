@@ -11,7 +11,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import auth from '../firebase';
 
 export default function Login({ navigation }) {
-  const [name, setName] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -23,23 +23,23 @@ export default function Login({ navigation }) {
   const iconPassword = <MaterialIcons name="lock" size={20} color="grey" />;
 
   const onPress = () => {
-    console.log('i am logged in with', name, email, password);
-    createUserWithEmailAndPassword(auth, email, password)
+    //  console.log('i am logged in with', displayName, email, password);
+    // if createUser is successful, should proceed to login
+    createUserWithEmailAndPassword(auth, email, password, displayName)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user.email);
-        navigation.navigate('Main Menu');
+        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage, errorCode);
       });
-
-    setName('');
+    setDisplayName('');
     setEmail('');
     setPassword('');
+    setConfirmPassword('');
   };
   return (
     <KeyboardAwareScrollView style={styles.scroll}>
@@ -52,8 +52,8 @@ export default function Login({ navigation }) {
         <CustomInput
           icon={iconPerson}
           placeholder="Name"
-          value={name}
-          setValue={setName}
+          value={displayName}
+          setValue={setDisplayName}
           style={styles.inputs}
         />
         <CustomInput

@@ -25,11 +25,7 @@ const AuthProvider = ({ children }) => {
       }
       setloading(false);
     });
-    return () => {
-      if (unsubscribe) {
-        unsubscribe();
-      }
-    };
+    return unsubscribe;
   }, []);
 
   const loginRequest = (email, password) => {
@@ -50,6 +46,7 @@ const AuthProvider = ({ children }) => {
       .then(() => {
         // need to set AuthData to null to go back to login page
         // above not need due to onAuthStateChanged
+        console.log('i signed out');
       })
       .catch((error) => {
         const errorCode = error.code;

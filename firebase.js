@@ -1,7 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp, getApp } from 'firebase/app';
+import { initializeApp, getApp, getApps } from 'firebase/app';
+import {
+  getReactNativePersistence,
+  initializeAuth,
+  getAuth,
+} from 'firebase/auth/react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAnalytics } from 'firebase/analytics';
-import { getAuth } from 'firebase/auth';
 import {
   REACT_APP_FIREBASE_API_KEY,
   REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -26,21 +31,18 @@ const firebaseConfig = {
   appId: REACT_APP_FIREBASE_APP_ID,
   measurementId: REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
-
+let app;
+let auth;
 // Initialize Firebase
-const createFirebaseApp = (config = {}) => {
-  // if an instance already exists use that one
-  try {
-    return getApp();
-  } catch (err) {
-    return initializeApp(config);
-  }
-};
-
-const firebaseApp = createFirebaseApp(firebaseConfig);
-const auth = getAuth();
-
-
-// const analytics = getAnalytics(app);
+// check if instance already exists
+if (getApps().length === 0) {
+  app = initializeApp(firebaseConfig);
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(AsyncStorage),
+  });
+} else {
+  app = getApp();
+  auth = getAuth(app);
+}
 
 export default auth;

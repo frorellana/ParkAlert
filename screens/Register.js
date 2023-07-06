@@ -97,9 +97,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: '#1D3557',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
   img: {
     width: 350,

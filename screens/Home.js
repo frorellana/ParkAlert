@@ -15,7 +15,7 @@ import { AuthContext } from '../contexts/Auth';
 export default function Home({ navigation }) {
   const context = useContext(AuthContext);
   const DATA = [
-    { text: 'Add Parking Spot', navigation: 'AddSpot' },
+    { text: 'Add Parking Spot', navigation: 'CarMap' },
     { text: 'Find Car', navigation: 'FindCar' },
     { text: 'Clear Parking Location', navigation: 'Clear' },
   ];

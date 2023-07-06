@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         // setAuthData(userCredentials.user);
-        // above not need due to onAuthStateChanged
+        // above not needed due to onAuthStateChanged
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
     signOut(auth)
       .then(() => {
         // need to set AuthData to null to go back to login page
-        // above not need due to onAuthStateChanged
+        // above not needed due to onAuthStateChanged
         console.log('i signed out');
       })
       .catch((error) => {

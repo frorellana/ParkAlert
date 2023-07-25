@@ -14,9 +14,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ExpoLocation from 'expo-location';
 import MapView, { Marker } from 'react-native-maps';
 import Loading from '../components/Loading';
-import { async } from '@firebase/util';
+import Modal from 'react-native-modal';
 
 export default function CarMap({ navigation }) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [bgOpacity, setBgOpacity] = useState(false);
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [mapRegion, setMapRegion] = useState(null);
@@ -40,13 +42,12 @@ export default function CarMap({ navigation }) {
     fetchStatus();
   }, []);
 
-  const onPressSave = async () => {
+  const onPressSave = () => {
     // save item to database
-    console.log(mapRegion);
   };
 
   return (
-    <View style={styles.container}>
+    <View style={(styles.container, { opacity: modalVisible ? 0.5 : 1 })}>
       {location === null ? (
         <Loading />
       ) : errorMsg ? (
@@ -55,6 +56,29 @@ export default function CarMap({ navigation }) {
         <Text>Map region doesn't exist</Text>
       ) : (
         <View>
+          <Modal
+            visible={modalVisible}
+            transparent={true}
+            animationType="slide"
+          >
+            <View style={styles.container}>
+              <View style={styles.modalView}>
+                <Text>hiiii</Text>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => console.log('choose location?')}
+                >
+                  <Text style={styles.textStyle}>Set Reminder</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
+                  <Text style={styles.textStyle}>Close Modal</Text>
+                </Pressable>
+              </View>
+            </View>
+          </Modal>
           <MapView
             style={{ alignSelf: 'stretch', height: '100%' }}
             region={mapRegion}
@@ -62,11 +86,10 @@ export default function CarMap({ navigation }) {
             <Marker coordinate={mapRegion} title="Current Location" />
           </MapView>
           <View style={styles.buttonContainer}>
-            {/* <Button onPress={onPressSave} title="Save Location" color="white" /> */}
             <CustomButton
               text={'Save Location'}
               additionalStyles={styles.button}
-              onPress={onPressSave}
+              onPress={() => setModalVisible(true)}
             />
           </View>
         </View>
@@ -77,6 +100,8 @@ export default function CarMap({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   button: {
     //use absolute position to show button on top of the map
@@ -87,5 +112,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     bottom: '10%',
     width: '85%',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

@@ -38,7 +38,11 @@ export default function Login({ navigation }) {
         setValue={setPassword}
         secureTextEntry={true}
       />
-      <CustomButton text={'Submit'} bgColor={'#457B9D'} onPress={onPress} />
+      <CustomButton
+        text={'Submit'}
+        onPress={onPress}
+        additionalStyles={styles.button}
+      />
       <Text
         onPress={() => navigation.navigate('Register')}
         style={styles.registerLink}
@@ -66,5 +70,10 @@ const styles = StyleSheet.create({
     width: 350,
     height: 200,
     resizeMode: 'contain',
+  },
+  button: {
+    width: '85%',
+    marginTop: 16,
+    backgroundColor: '#457B9D',
   },
 });

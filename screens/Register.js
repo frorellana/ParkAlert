@@ -80,9 +80,8 @@ export default function Login({ navigation }) {
         />
         <CustomButton
           text={'Submit'}
-          bgColor={'#E63946'}
           onPress={onPress}
-          style={styles.button}
+          additionalStyles={styles.button}
         />
       </SafeAreaView>
     </KeyboardAwareScrollView>
@@ -103,5 +102,10 @@ const styles = StyleSheet.create({
     width: 350,
     height: 200,
     resizeMode: 'contain',
+  },
+  button: {
+    width: '85%',
+    marginTop: 16,
+    backgroundColor: '#E63946',
   },
 });

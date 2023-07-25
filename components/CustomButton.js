@@ -1,17 +1,17 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 
-export default function CustomButton({ onPress, text, bgColor }) {
+export default function CustomButton({ onPress, text, additionalStyles = {} }) {
   return (
     <Pressable
       style={({ pressed }) => {
         return [
           {
             opacity: pressed ? 0.5 : 1,
-            backgroundColor: `${bgColor}`,
           },
           styles.container,
           styles.shadowProp,
+          additionalStyles,
         ];
       }}
       onPress={onPress}
@@ -23,10 +23,8 @@ export default function CustomButton({ onPress, text, bgColor }) {
 
 const styles = StyleSheet.create({
   container: {
-    width: '85%',
     borderRadius: 15,
     padding: 18,
-    marginTop: 16,
     alignItems: 'center',
   },
   shadowProp: {

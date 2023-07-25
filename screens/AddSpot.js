@@ -5,7 +5,7 @@ import CustomInput from '../components/CustomInput';
 export default function AddSpot() {
   return (
     <View>
-      <Text>Add your parking here</Text>
+      <Text>Save your parking spot here</Text>
       <CustomInput />
     </View>
   );

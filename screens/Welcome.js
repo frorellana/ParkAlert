@@ -11,12 +11,12 @@ export default function Welcome({ navigation }) {
       <View style={styles.buttons}>
         <CustomButton
           text={'Login'}
-          bgColor={'#457B9D'}
+          additionalStyles={styles.button1}
           onPress={() => navigation.navigate('Login')}
         />
         <CustomButton
           text={'Register'}
-          bgColor={'#E63946'}
+          additionalStyles={styles.button2}
           onPress={() => navigation.navigate('Register')}
         />
       </View>
@@ -40,5 +40,15 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     flex: 2,
+  },
+  button1: {
+    width: '85%',
+    marginTop: 16,
+    backgroundColor: '#457B9D',
+  },
+  button2: {
+    width: '85%',
+    marginTop: 16,
+    backgroundColor: '#E63946',
   },
 });
